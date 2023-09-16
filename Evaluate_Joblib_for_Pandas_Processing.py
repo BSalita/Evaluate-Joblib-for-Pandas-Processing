@@ -24,7 +24,7 @@ def main():
     def series_subtract_ten(s):
         return s - 10
 
-    # UDF 3: Square the value. column at a time. .015 seconds.
+    # UDF 3: Square the value. column at a time.
     def col_square_val(col):
         return df[col] ** 2
 
