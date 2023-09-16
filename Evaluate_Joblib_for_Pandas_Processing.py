@@ -32,6 +32,8 @@ def main():
     def apply_col_sum(r):
         return r['A']+r['B']+r['C']
 
+    # Baseline benchmarks for usual serial execution.
+    
     t = time.time()
     df['A'].map(map_double_val) # 1.81 seconds.
     print('map_double_val:',time.time()-t)
@@ -49,6 +51,7 @@ def main():
     print('apply_col_sum:',time.time()-t)
 
     # Use joblib's Parallel and delayed to run tasks in parallel
+    
     t = time.time()
     Parallel(n_jobs=1)([delayed(df['A'].map)(map_double_val)]) # 1.81 seconds.
     print('Parallel: map_double_val:',time.time()-t)
@@ -69,7 +72,6 @@ def main():
     results = Parallel(n_jobs=4)([delayed(df['A'].map)(map_double_val),delayed(series_subtract_ten)(df['B']),delayed(col_square_val)('C'),delayed(df.apply)(apply_col_sum,axis='columns')])
     print('Parallel: all:',time.time()-t)
 
-    # Reset the DataFrame to its original state for the parallel execution
     df2 = pd.DataFrame()
     df2['A'], df2['B'], df2['C'], df2['D'] = results
 
