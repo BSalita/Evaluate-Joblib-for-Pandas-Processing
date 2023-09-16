@@ -1,7 +1,7 @@
 
 # joblib is a cross-platform multiprocessing lib.
 # evaluate joblib's overhead for using various methods of calling large dataframe.
-# conclusion is that joblib's overhead costs nearly nothing when compared to usual serial programming.
+# conclusion is that joblib's overhead costs nearly nothing when compared to usual serial execution.
 
 import pandas as pd
 import numpy as np
